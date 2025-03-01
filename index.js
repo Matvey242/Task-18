@@ -34,7 +34,7 @@ app.get('/getUsers/:name', (req, res) => {
 	try {
 		const { name } = req.params
 		const users = JSON.parse(fs.readFileSync(path.join(__dirname, 'db', 'db.json'), 'utf-8'))
-		const user = users.find(user => user.name.toLowerCase() == name.toLowerCase())
+		const user = users.find(user => user.name.toLowerCase() == name.toLowerCase() || user.age == name || user.city.toLowerCase() == name.toLowerCase())
 		res.json(user)
 	} catch (error) {
 		console.log('Ошибка при получении пользователя', error)
